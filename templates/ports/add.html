@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}HellHeim! — {% trans "Adding port forwarding rule" %}{% endblock %}
+{% block localcss %}
+    <link rel="stylesheet" href="/static/css/ports.css" media="screen">
+{% endblock %}
+
+{% block body %}
+<h3>{% trans "Adding port forwarding rule" %}</h3>
+<p>{% trans "Double-check what you need! Be careful :)" %}</p>
+<br>
+<div class="bubble">
+    <table class="generic_form">
+        <form class="ports_form" method="post" action="">
+        {% csrf_token %}
+        {% for field in form %}
+            <tr>
+                <td>{{ field.name }}</td>
+                <td>{{ field }}</td>
+            </tr>
+            {% if field.errors %}
+            <tr class="errors">
+                <td></td>
+                <td>{{ field.errors }}</td>
+            </tr>
+            </strong>
+            {% endif %}
+            <tr class="second">
+                <td></td>
+                <td>{{ field.help_text }}</td>
+            </tr>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="{% trans "Add, ma monster!" %}">
+                </td>
+            </tr>
+        </tfoot>
+        </form>
+    </table>
+    <div class="clear"></div>
+</div>
+{% endblock %}

@@ -38,7 +38,7 @@
         {% if user.is_authenticated %}
             <p>{% trans "Ololo" %}, {{ user }}! [<a href="/logout/">X</a>]</p>
         {% else %}
-            <p>{% trans "You're not ololo." %} <a href="/login">{% trans "Login" %}</a> {% trans "to become ololo." %}</p>
+            <p>{% trans "You're not ololo." %} <a href="/login?next=/">{% trans "Login" %}</a> {% trans "to become ololo." %}</p>
         {% endif %}
         <!-- Don't do it as I do it here! -->
         <div class="menulink">

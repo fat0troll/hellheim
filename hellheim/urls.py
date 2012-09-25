@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from ports.views import ports_index, add_port, edit_port, delete_port
+from stuff.views import main_page
 from vms.views import machine_index, add_machine, edit_machine
 from django.contrib.auth.views import login, logout
 
@@ -17,10 +19,19 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
+    # Main page
+    url(r'^$', main_page),
+
     # Virtual Machines UI
     url(r'^vms/(?P<pid>\w+)/edit', edit_machine),
     url(r'^vms/add', add_machine),
     url(r'^vms', machine_index),
+
+    # Port forwarding
+    url(r'^ports/(?P<pid>\w+)/delete', delete_port),
+    url(r'^ports/(?P<pid>\w+)/edit', edit_port),
+    url(r'^ports/add', add_port),
+    url(r'^ports', ports_index),
 
     # Login and logout
     url(r'^login', login),

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}HellHeim! — {% trans "Main page" %}{% endblock %}
+
+{% block body %}
+    <p>{% trans "Tabs above, use it to select what you need." %}</p>
+    <p>{% trans "Have I told you that this is ascetic interface? There is no information on main page." %}</p>
+    <p>{% trans "Listen to Rachmaninoff" %}, {{ user }}.</p>
+{% endblock %}

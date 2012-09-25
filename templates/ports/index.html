@@ -1,47 +1,51 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}HellHeim! — {% trans "Virtual machines" %}{% endblock %}
+{% block title %}HellHeim! — {% trans "Port forwarding" %}{% endblock %}
 {% block localcss %}
-    <link rel="stylesheet" href="/static/css/vms.css" media="screen">
+    <link rel="stylesheet" href="/static/css/ports.css" media="screen">
 {% endblock %}
 
 {% block body %}
-<h3>{% trans "Virtual Machines" %}</h3>
-<p>{% trans "All the fucking virtual machines here. You can view all VMs here and (if you have trolling 80 lvl reached) — add or edit it." %}</p>
-<p>{% trans "Connecting to specific VM depends on it's settings." %}</p>
+<h3>{% trans "Ports" %}</h3>
+<p>{% trans "All the fucking port forwarding here. You can view all port forwarding here and (if you have trolling 80 lvl reached) — add or edit it." %}</p>
 {% if user.is_staff %}
+<p>{% trans "Note: when you press 'Delete', selected port forwarding rule will be deleted IMMEDIATELY!" %}</p>
     <div class="rightfloat">
-        [<a href="/vms/add">{% trans "Add new Virtual Machine" %}</a>]
+        [<a href="/ports/add">{% trans "Add new forwarding" %}</a>]
     </div>
 {% endif %}
 <table class="generic_table">
     <thead>
         <tr>
-            <th>Virtual Machine name</th>
-            <th>Owner</th>
-            <th>IP address</th>
-            <th>Last modified</th>
+            <th>Human readable name</th>
+            <th>Internal Port</th>
+            <th>Outcoming Port</th>
+            <th>Virtual Machine (IP address)</th>
+            <th>Added by</th>
+            <th>Modified</th>
+            {% if user.is_staff %}
+                <th></th>
+                <th></th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
-        {% for vm in vms %}
+        {% for port in ports %}
             <tr>
-                <td colspan="3">{% trans "Virtual Machine" %} #{{ vm.id }}</td>
-                <td>
-                    {% if user.is_staff %}
-                        [<a href="/vms/{{ vm.id }}/edit">{% trans "Edit VM" %}</a>]
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <td>{{ vm.name }}</td>
-                <td>{{ vm.owner }}</td>
-                <td>{{ vm.ip_addr }}</td>
-                <td>{{ vm.last_modified }}</td>
-            </tr>
-            <tr class="vm_lastrow">
-                <td></td>
-                <td colspan="3">{{ vm.description }}</td>
+                <td>{{ port.comment }}</td>
+                <td>{{ port.number_in }}</td>
+                <td>{{ port.number_out }}</td>
+                <td>{{ port.vm }} ({{ port.vm.ip_addr }})</td>
+                <td>{{ port.added_by }}</td>
+                <td>{{ port.last_modified }}</td>
+                {% if user.is_staff %}
+                    <td>
+                        [<a href="/ports/{{ port.id }}/edit">{% trans "Edit" %}</a>]
+                    </td>
+                    <td>
+                        [<a href="/ports/{{ port.id }}/delete">{% trans "Delete" %}</a>]
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>
