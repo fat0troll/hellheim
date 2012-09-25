@@ -1,0 +1,125 @@
+/* Fucking all the hell! */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #000;
+    background-color: #ddd;
+}
+
+/* Some helpful classes */
+
+.rightfloat {
+    float: right;
+}
+
+.bubble {
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 16px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Header */
+
+/* divs */
+
+.header {
+    background-color: #2e8b57;
+    width: 100%;
+    height: 75px;
+}
+
+.logo {
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+}
+
+.headerinfo {
+    color: #fff;
+    padding: 8px;
+}
+
+.menu {
+    width: 100%;
+    height: 25px;
+    float: left;
+}
+
+.menulink {
+    padding-left: 4px;
+    padding-right: 4px;
+    height: 23px;
+    float: right;
+    border: 2px groove #fff;
+    border-bottom: none;
+    margin-right: 4px;
+}
+
+/* links */
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14pt;
+}
+
+.menulink a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* text formattin' */
+
+.menu p {
+    float: left;
+}
+
+/* Content */
+
+.content {
+    padding: 16px;
+}
+
+/* Generic table */
+
+table.generic_table {
+    width: 96%;
+}
+
+table.generic_table thead {
+    background-color: #bbb;
+    height: 40px;
+    text-align: center;
+}
+
+table.generic_table td {
+    height: 40px;
+}
+
+/* Generic form table */
+
+table.generic_form {
+    width: 96%;
+}
+
+table.generic_form td {
+    height: 40px;
+}
+
+table.generic_form tr.second td {
+    border-bottom: 2px #fff solid;
+}
+
+table.generic_form tr.errors td {
+    background-color: red;
+}

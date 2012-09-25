@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block title %}HellHeim! — {%  trans "Login" %}{% endblock %}
+{% block localcss %}<link rel="stylesheet" href="/static/stylesheets/auth.css">{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <h3>{% trans "Error" %}</h3>
+        <p>{% trans "You're already logged in as" %} {{ user }}</p>
+    {% else %}
+        {% trans "If you don't have an account, leave this site NOW!" %}
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="{% trans "Login" %}">
+        </form>
+    {% endif %}
+{% endblock %}

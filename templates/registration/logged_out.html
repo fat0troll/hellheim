@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block title %}HellHeim! — {% trans "Leaving the boat" %}{% endblock %}
+{% block localcss %}<link rel="stylesheet" href="/static/css/auth.css">{% endblock %}
+
+{% block body %}
+    {% trans "You have successfully logged out." %}
+    <a href="http://google.ru">{% trans "Leave!" %}</a>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}HellHeim! — {% trans "Virtual machines" %}{% endblock %}
+{% block localcss %}
+    <link rel="stylesheet" href="/static/css/vms.css" media="screen">
+{% endblock %}
+
+{% block body %}
+<h3>{% trans "Virtual Machines" %}</h3>
+<p>{% trans "All the fucking virtual machines here. You can view all VMs here and (if you have trolling 80 lvl reached) — add or edit it." %}</p>
+<p>{% trans "Connecting to specific VM depends on it's settings." %}</p>
+{% if user.is_staff %}
+    <div class="rightfloat">
+        [<a href="/vms/add">{% trans "Add new Virtual Machine" %}</a>]
+    </div>
+{% endif %}
+<table class="generic_table">
+    <thead>
+        <tr>
+            <th>Virtual Machine name</th>
+            <th>Owner</th>
+            <th>IP address</th>
+            <th>Last modified</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vm in vms %}
+            <tr>
+                <td colspan="3">{% trans "Virtual Machine" %} #{{ vm.id }}</td>
+                <td>
+                    {% if user.is_staff %}
+                        [<a href="/vms/{{ vm.id }}/edit">{% trans "Edit VM" %}</a>]
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ vm.name }}</td>
+                <td>{{ vm.owner }}</td>
+                <td>{{ vm.ip_addr }}</td>
+                <td>{{ vm.last_modified }}</td>
+            </tr>
+            <tr class="vm_lastrow">
+                <td></td>
+                <td colspan="3">{{ vm.description }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

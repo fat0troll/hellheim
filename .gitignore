@@ -1,0 +1,6 @@
+# Pythonish
+*.pyc
+# PyCharm-ish
+.idea/
+# Troll-ish
+*.db

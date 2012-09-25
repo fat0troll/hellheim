@@ -1,0 +1,56 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
+<head>
+   <!-- basic page needs -->
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="Valdos Sine">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- common css -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <!-- per-page css -->
+    {% block localcss %}{% endblock %}
+    <!-- favicons -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <a href="/">HellHeim!</a>
+    </div>
+    <div class="rightfloat headerinfo">
+        {% trans "Page loaded:" %} {{ time }}
+    </div>
+    <div class="menu">
+        {% if user.is_authenticated %}
+            <p>{% trans "Ololo" %}, {{ user }}! [<a href="/logout/">X</a>]</p>
+        {% else %}
+            <p>{% trans "You're not ololo." %} <a href="/login">{% trans "Login" %}</a> {% trans "to become ololo." %}</p>
+        {% endif %}
+        <!-- Don't do it as I do it here! -->
+        <div class="menulink">
+            <a href="/vms">{% trans "Virtual Machines" %}</a>
+        </div>
+        <div class="menulink">
+            <a href="/ports">{% trans "Ports" %}</a>
+        </div>
+    </div>
+</div>
+<div class="content">
+    {% block body %}{% endblock %}
+</div>
+</body>
+</html>
