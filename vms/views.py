@@ -12,6 +12,15 @@ def machine_index(request):
         'vms': vms,
     }, context_instance=RequestContext(request))
 
+def check_add_machine(form, request):
+    
+    status = 0
+    
+    if status:
+        return True
+    else:
+        return False
+
 @is_staff
 def add_machine(request):
     """
